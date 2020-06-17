@@ -466,7 +466,7 @@ class Visualizer:
             except AttributeError:
                 mask_color = None
 
-            text = self.metadata.stuff_classes[category_idx]
+            text = None
             self.draw_binary_mask(
                 mask,
                 color=mask_color,
@@ -490,10 +490,11 @@ class Visualizer:
         labels = _create_text_labels(category_ids, scores, self.metadata.thing_classes)
 
         try:
-            colors = [random_color(rgb=True, maximum=1) for k in category_ids]
+            colors = [self.metadata.stuff_colors[k] for k in category_ids]
+            
         except AttributeError:
             colors = None
-        # self.overlay_instances(masks=masks, assigned_colors=colors, alpha=alpha)
+        self.overlay_instances(masks=masks, assigned_colors=colors, alpha=alpha)
 
         return self.output
 
