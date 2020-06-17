@@ -426,12 +426,12 @@ class Visualizer:
                 mask_color = None
 
             binary_mask = (sem_seg == label).astype(np.uint8)
-            text = self.metadata.stuff_classes[label]
+            # text = self.metadata.stuff_classes[label]
             self.draw_binary_mask(
                 binary_mask,
                 color=mask_color,
                 edge_color=_OFF_WHITE,
-                text=text,
+                text=None,
                 alpha=alpha,
                 area_threshold=area_threshold,
             )
