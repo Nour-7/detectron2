@@ -212,7 +212,7 @@ def _create_text_labels(classes, scores, class_names):
             labels = ["{:.0f}%".format(s * 100) for s in scores]
         else:
             labels = ["{} {:.0f}%".format(l, s * 100) for l, s in zip(labels, scores)]
-    return labels
+    return None
 
 
 class VisImage:
@@ -493,7 +493,7 @@ class Visualizer:
             colors = [random_color(rgb=True, maximum=1) for k in category_ids]
         except AttributeError:
             colors = None
-        self.overlay_instances(masks=masks, assigned_colors=colors, alpha=alpha)
+        # self.overlay_instances(masks=masks, assigned_colors=colors, alpha=alpha)
 
         return self.output
 
