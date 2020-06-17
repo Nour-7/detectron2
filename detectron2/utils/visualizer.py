@@ -490,8 +490,10 @@ class Visualizer:
         labels = _create_text_labels(category_ids, scores, self.metadata.thing_classes)
 
         try:
-            colors = [self.metadata.stuff_colors[k] for k in category_ids]
+            colors = [[x / 255 for x in self.metadata.stuff_colors[k] for k in category_ids]
             
+            # mask_color = [x / 255 for x in self.metadata.stuff_colors[category_idx]]
+
         except AttributeError:
             colors = None
         self.overlay_instances(masks=masks, assigned_colors=colors, alpha=alpha)
