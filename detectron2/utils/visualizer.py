@@ -1010,7 +1010,7 @@ class Visualizer:
                 segment = segment.reshape(-1, 2)
                 print(color)
                 if area < (area_threshold or 0):
-                    self.draw_polygon(segment, color=[[0, 0, 0]], edge_color=edge_color, alpha=alpha)
+                    self.draw_polygon(segment, color=(0.0, 0.0, 0.0), edge_color=edge_color, alpha=alpha)
                     continue
                 self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
         else:
