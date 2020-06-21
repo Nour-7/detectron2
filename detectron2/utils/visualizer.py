@@ -1002,21 +1002,31 @@ class Visualizer:
         mask = GenericMask(binary_mask, self.output.height, self.output.width)
         shape2d = (binary_mask.shape[0], binary_mask.shape[1])
 
-        if not mask.has_holes:
-            # draw polygons for regular masks
-            for segment in mask.polygons:
-                area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
-                if area < (area_threshold or 0):
-                    continue
-                has_valid_segment = True
-                segment = segment.reshape(-1, 2)
-                self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
-        else:
-            rgba = np.zeros(shape2d + (4,), dtype="float32")
-            rgba[:, :, :3] = color
-            rgba[:, :, 3] = (mask.mask == 1).astype("float32") * alpha
+        # if not mask.has_holes:
+        #     # draw polygons for regular masks
+        #     for segment in mask.polygons:
+        #         area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
+        #         if area < (area_threshold or 0):
+        #             continue
+        #         has_valid_segment = True
+        #         segment = segment.reshape(-1, 2)
+        #         self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
+        # else:
+        #     rgba = np.zeros(shape2d + (4,), dtype="float32")
+        #     rgba[:, :, :3] = color
+        #     rgba[:, :, 3] = (mask.mask == 1).astype("float32") * alpha
+        #     has_valid_segment = True
+        #     self.output.ax.imshow(rgba)
+      
+        # draw polygons for regular masks
+        for segment in mask.polygons:
+            area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
+            if area < (area_threshold or 0):
+                continue
             has_valid_segment = True
-            self.output.ax.imshow(rgba)
+            segment = segment.reshape(-1, 2)
+            self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
+    
 
         if text is not None and has_valid_segment:
             # TODO sometimes drawn on wrong objects. the heuristics here can improve.
