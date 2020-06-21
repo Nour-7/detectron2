@@ -111,7 +111,7 @@ class GenericMask:
                 self._polygons, self._has_holes = self.mask_to_polygons(self._mask)
             else:
                 self._has_holes = False  # if original format is polygon, does not have holes
-        return self._has_holes
+        return False
 
     def mask_to_polygons(self, mask):
         # cv2.RETR_CCOMP flag retrieves all the contours and arranges them to a 2-level
@@ -1010,7 +1010,7 @@ class Visualizer:
                 segment = segment.reshape(-1, 2)
                 print(color)
                 if area < (area_threshold or 0):
-                    self.draw_polygon(segment, color=(0.0, 0.0, 0.0), edge_color=edge_color, alpha=alpha)
+                    # self.draw_polygon(segment, color=(0.0, 0.0, 0.0), edge_color=edge_color, alpha=alpha)
                     continue
                 self.draw_polygon(segment, color=color, edge_color=color, alpha=alpha)
         else:
