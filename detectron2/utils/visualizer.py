@@ -1008,7 +1008,7 @@ class Visualizer:
                 area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
                 has_valid_segment = True
                 segment = segment.reshape(-1, 2)
-                 if area < (area_threshold or 0):
+                if area < (area_threshold or 0):
                     self.draw_polygon(segment, color=[0, 0, 0], edge_color=edge_color, alpha=alpha)
                 self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
         else:
