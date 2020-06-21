@@ -1002,14 +1002,30 @@ class Visualizer:
         mask = GenericMask(binary_mask, self.output.height, self.output.width)
         shape2d = (binary_mask.shape[0], binary_mask.shape[1])
 
+        if not mask.has_holes:
+            # draw polygons for regular masks
+            for segment in mask.polygons:
+                area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
+                has_valid_segment = True
+                segment = segment.reshape(-1, 2)
+                 if area < (area_threshold or 0):
+                    self.draw_polygon(segment, color=[0, 0, 0], edge_color=edge_color, alpha=alpha)
+                self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
+        else:
+            rgba = np.zeros(shape2d + (4,), dtype="float32")
+            rgba[:, :, :3] = color
+            rgba[:, :, 3] = (mask.mask == 1).astype("float32") * alpha
+            has_valid_segment = True
+            self.output.ax.imshow(rgba)
+      
         # if not mask.has_holes:
-        #     # draw polygons for regular masks
+        #      # draw polygons for regular masks
         #     for segment in mask.polygons:
         #         area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
-        #         if area < (area_threshold or 0):
-        #             continue
         #         has_valid_segment = True
         #         segment = segment.reshape(-1, 2)
+        #         if area < (area_threshold or 0):
+        #             self.draw_polygon(segment, color=[0, 0, 0], edge_color=edge_color, alpha=alpha)
         #         self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
         # else:
         #     rgba = np.zeros(shape2d + (4,), dtype="float32")
@@ -1017,23 +1033,6 @@ class Visualizer:
         #     rgba[:, :, 3] = (mask.mask == 1).astype("float32") * alpha
         #     has_valid_segment = True
         #     self.output.ax.imshow(rgba)
-      
-       if not mask.has_holes:
-            # draw polygons for regular masks
-            for segment in mask.polygons:
-                area = mask_util.area(mask_util.frPyObjects([segment], shape2d[0], shape2d[1]))
-                has_valid_segment = True
-                segment = segment.reshape(-1, 2)
-                if area < (area_threshold or 0):
-                    self.draw_polygon(segment, color=[0, 0, 0], edge_color=edge_color, alpha=alpha)
-                self.draw_polygon(segment, color=color, edge_color=edge_color, alpha=alpha)
-
-        else:
-            rgba = np.zeros(shape2d + (4,), dtype="float32")
-            rgba[:, :, :3] = color
-            rgba[:, :, 3] = (mask.mask == 1).astype("float32") * alpha
-            has_valid_segment = True
-            self.output.ax.imshow(rgba)
     
 
         if text is not None and has_valid_segment:
