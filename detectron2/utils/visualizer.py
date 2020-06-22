@@ -430,7 +430,7 @@ class Visualizer:
             self.draw_binary_mask(
                 binary_mask,
                 color=mask_color,
-                edge_color=None,
+                edge_color=(0.0, 0.0, 0.0),
                 text=None,
                 alpha=alpha,
                 area_threshold=area_threshold,
