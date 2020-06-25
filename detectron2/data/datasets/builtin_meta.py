@@ -120,7 +120,7 @@ COCO_CATEGORIES = [{'color': [128, 128, 128], 'isthing': 1, 'id': 1, 'name': 'pe
  {'color': [255, 255, 255], 'isthing': 0, 'id': 178, 'name': 'water-other'},
  {'color': [0, 0, 255], 'isthing': 0, 'id': 180, 'name': 'window-blind'},
  {'color': [0, 0, 255], 'isthing': 0, 'id': 181, 'name': 'window-other'},
- {'color': [0, 0, 255], 'isthing': 0, 'id': 184, 'name': 'tree-merged'},
+ {'color': [255, 0, 255], 'isthing': 0, 'id': 184, 'name': 'tree-merged'},
  {'color': [0, 0, 255], 'isthing': 0, 'id': 185, 'name': 'fence-merged'},
  {'color': [0, 0, 255], 'isthing': 0, 'id': 186, 'name': 'ceiling-merged'},
  {'color': [0, 255, 0], 'isthing': 0, 'id': 187, 'name': 'sky-other-merged'},
