@@ -1055,7 +1055,7 @@ class Visualizer:
                 edge_color = self._change_color_brightness(color, brightness_factor=-1.0)
             else:
                 edge_color = color
-        edge_color = mplc.to_rgb(edge_color) + (1,)
+        edge_color = mplc.to_rgb(edge_color) + (alpha,)
 
         polygon = mpl.patches.Polygon(
             segment,

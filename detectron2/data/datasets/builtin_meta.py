@@ -100,7 +100,7 @@ COCO_CATEGORIES = [{'color': [218, 100, 218], 'isthing': 1, 'id': 1, 'name': 'pe
  {'color': [205, 37, 37], 'isthing': 0, 'id': 133, 'name': 'mirror-stuff'}, 
  {'color': [205, 37, 37], 'isthing': 0, 'id': 138, 'name': 'net'}, 
  {'color': [218, 100, 218], 'isthing': 0, 'id': 141, 'name': 'pillow'}, 
- {'color': [205, 37, 37], 'isthing': 0, 'id': 144, 'name': 'platform'}, 
+ {'color': [100, 124, 124], 'isthing': 0, 'id': 144, 'name': 'platform'}, 
  {'color': [100, 124, 124], 'isthing': 0, 'id': 145, 'name': 'playingfield'}, 
  {'color': [100, 124, 124], 'isthing': 0, 'id': 147, 'name': 'railroad'}, 
  {'color': [36, 36, 197], 'isthing': 0, 'id': 148, 'name': 'river'}, 
